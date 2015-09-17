@@ -8,7 +8,7 @@ A project template for Rust projects to be built on the Nintendo 3DS Homebrew La
  * Rust nightly (1.4 as of this writing)
  * [my modified `cargo-build`](https://github.com/Furyhunter/cargo-build) -- subject to change if changes get merged.
  * `libcore` compiled from Rust sources. Instructions below on building.
- * `libcompiler-rt.a` for 3ds. Link forthcoming, since it requires some modification of the rust build system to create. Ask me on irc if you want it. Copy it into `sysroot/lib/rustlib/3ds.json/lib` after building your `libcore` for convenience.
+ * `libcompiler-rt.a` for 3ds. Provided in sysroot folder. Use the sysroot target to build the rust dependency libraries as mentioned below, and everything should work automatically.
 
 ## Environment configuration
 

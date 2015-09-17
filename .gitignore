@@ -1,6 +1,7 @@
 target/
 dist/
-sysroot/
+
+*.rlib
 
 *.o
 *.ll
