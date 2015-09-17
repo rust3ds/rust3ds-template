@@ -18,7 +18,7 @@ endif
 all: $(CRATE_NAME)
 
 target/3ds/release/$(CRATE_NAME).elf:
-	$(CARGO_BUILD) --release --sysroot $(RUST_3DS_SYSROOT) --target 3ds.json --opt $(LLVM_OPT) $(CARGO_FLAGS) -- -Z no-landing-pads -L$(CTRULIB)/lib -lctru
+	$(CARGO_BUILD) --release --sysroot $(RUST_3DS_SYSROOT) --target 3ds.json $(CARGO_FLAGS) -- -Z no-landing-pads -L$(CTRULIB)/lib -lctru
 
 target/3ds/release/$(CRATE_NAME).smdh:
 	$(SMDHTOOL) --create "${PROG_NAME}" "${PROG_DESC}" "${PROG_AUTHOR}" "${PROG_ICON}" target/3ds/release/$(CRATE_NAME).smdh
