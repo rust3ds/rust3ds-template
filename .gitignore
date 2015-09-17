@@ -1,0 +1,9 @@
+target/
+dist/
+sysroot/
+
+*.o
+*.ll
+*.elf
+*.3dsx
+*.smdh
