@@ -10,7 +10,7 @@ extern crate alloc;
 #[macro_use] extern crate collections;
 
 use ctru::srv;
-use ctru::gfx;
+use ctru::gfx::Gfx;
 use ctru::services::apt;
 use ctru::services::hid;
 use ctru::services::gsp;
@@ -25,44 +25,41 @@ pub extern fn main(_: isize, _: *const *const u8) -> isize {
     0
 }
 
-fn main_loop() -> bool {
-    hid::scan_input();
-    if hid::key_down(hid::PadKey::Start) {
-        return false;
-    }
-    true
-}
-
 fn main_3ds() -> () {
     srv::init();
     apt::init();
     hid::init();
-    gfx::init_default();
-    gfx::set_3d_enabled(false);
+    let mut gfx = Gfx::default();
 
     let v: Vec<u8> = vec![64u8, 128u8, 192u8, 255u8, 192u8, 128u8, 64u8, 0u8];
 
     let mut iterate: usize = 0;
 
     apt::main_loop(|| {
-        let mut w = 0u16;
-        let mut h = 0u16;
-        let tb: *mut u8 = unsafe {
-            raw::gfx::gfxGetFramebuffer(raw::gfx::gfxScreen_t::GFX_TOP,
-                raw::gfx::gfx3dSide_t::GFX_LEFT, &mut w as *mut u16, &mut h as *mut u16)
-        };
+        use ctru::gfx::{Screen, Side};
+        use ctru::services::gsp::FramebufferFormat;
+
+        gfx.set_framebuffer_format(Screen::Top, FramebufferFormat::Bgr8);
+        let (fb, _, _) = gfx.get_framebuffer(Screen::Top, Side::Left);
+
         gsp::wait_for_event(gsp::Event::VBlank0);
-        for xx in 0..(w as isize * h as isize) {
-            unsafe { *tb.offset(xx * 3 + 2) = v[iterate] }
+        let value = v[iterate];
+        for i in fb.iter_mut() {
+            *i = value;
         }
-        gfx::flush_buffers();
-        gfx::swap_buffers();
+        gfx.flush_buffers();
+        gfx.swap_buffers();
         iterate += 1usize;
         if iterate >= v.len() { iterate = 0; }
-        main_loop()
+
+        hid::scan_input();
+        if hid::key_down(hid::PadKey::Start) {
+            return false;
+        }
+        true
     });
 
-    gfx::exit();
+    drop(gfx);
     hid::exit();
     apt::exit();
     srv::exit();
