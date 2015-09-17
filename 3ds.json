@@ -27,6 +27,9 @@
       "-lsysbase",
       "-lc",
       "-lcompiler-rt",
+      "-lsysbase",
+      "-lgcc",
+      "-lc",
       "-lsysbase"
   ],
   "is-like-windows": false,

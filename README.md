@@ -39,9 +39,7 @@ available. It requires some unwinding features that are not possible.**
  * `core` -- platform-agnostic basics + prelude
  * `alloc` -- memory allocation functions
  * `libc` -- libc bindings. note: using some functions may result in undefined symbols
- * `alloc_system` -- implementation of memory allocation functions using libc (required by `alloc`, requires `libc`). likely will not work without linking `libctru`
  * `rustc_unicode` -- unicode stuff
  * `collections` -- std collections (requires `alloc`, `rustc_unicode`)
 
-The make target `sysroot` automatically builds these. The default code only
-refers to `core` however.
+The make target `sysroot` automatically builds these. Allocators are provided by a simple implementation of `alloc_system`. This means that `Box` is available, so `collections` will work in its entirety.

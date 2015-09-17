@@ -44,7 +44,6 @@ clean:
 sysroot: sysroot/lib/rustlib/3ds.json/lib/libcore.rlib \
 		sysroot/lib/rustlib/3ds.json/lib/liballoc.rlib \
 		sysroot/lib/rustlib/3ds.json/lib/liblibc.rlib \
-		sysroot/lib/rustlib/3ds.json/lib/liballoc_system.rlib \
 		sysroot/lib/rustlib/3ds.json/lib/librustc_unicode.rlib \
 		sysroot/lib/rustlib/3ds.json/lib/libcollections.rlib
 
