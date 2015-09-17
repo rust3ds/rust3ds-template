@@ -14,8 +14,10 @@ A project template for Rust projects to be built on the Nintendo 3DS Homebrew La
 
 The file `~/.cargo/config` must be created with these contents:
 
-  [target.3ds]
-  ar = "/path/to/arm-none-eabi-ar"
+```toml
+[target.3ds]
+ar = "/path/to/arm-none-eabi-ar"
+```
 
 The archiver is not settable using target json, so you have to set this
 manually. Otherwise the system `ar` will be used, and you'll get sad linker
