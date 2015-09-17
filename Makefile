@@ -33,7 +33,7 @@ dist: $(CRATE_NAME)
 	cp target/3ds/release/$(CRATE_NAME).elf dist/$(CRATE_NAME)
 	cp target/3ds/release/$(CRATE_NAME).3dsx dist/$(CRATE_NAME)
 	cp target/3ds/release/$(CRATE_NAME).smdh dist/$(CRATE_NAME)
-	cp $(PROG_ICON) dist/$(CRATE_NAME).png
+	cp $(PROG_ICON) dist/$(CRATE_NAME)/$(CRATE_NAME).png
 
 clean:
 	rm -rf target
