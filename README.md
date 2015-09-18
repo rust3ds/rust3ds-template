@@ -33,7 +33,7 @@ The following environment variables need to be set:
 
 The sysroot libraries can be generated using the `sysroot` target. For that, you need to set this environment variable:
 
- * `$RUST_SRC_PATH` -- path to root of rust checkout.
+ * `$RUST_SRC_PATH` -- path to `src` of rust checkout
 
 The following rustc libraries can be built. **Notably, libstd is not currently
 available. It requires some unwinding features that are not possible.**
