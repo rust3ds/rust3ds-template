@@ -9,15 +9,10 @@ extern crate ctru;
 extern crate alloc;
 #[macro_use] extern crate collections;
 
-use ctru::srv;
-use ctru::gfx::Gfx;
-use ctru::services::apt;
-use ctru::services::hid;
+use ctru::{Srv, Gfx};
+use ctru::services::{Hid, Apt, Application};
+use ctru::services::hid::PadKey;
 use ctru::services::gsp;
-
-use ctru::raw;
-
-use collections::vec::Vec;
 
 #[no_mangle]
 pub extern fn main(_: isize, _: *const *const u8) -> isize {
@@ -25,42 +20,60 @@ pub extern fn main(_: isize, _: *const *const u8) -> isize {
     0
 }
 
-fn main_3ds() -> () {
-    srv::init();
-    apt::init();
-    hid::init();
-    let mut gfx = Gfx::default();
+struct MyApplication {
+    hid: Hid,
+    gfx: Gfx,
+    running: bool
+}
 
-    let v: Vec<u8> = vec![64u8, 128u8, 192u8, 255u8, 192u8, 128u8, 64u8, 0u8];
-
-    let mut iterate: usize = 0;
-
-    apt::main_loop(|| {
+impl Application for MyApplication {
+    fn main_loop(&mut self, _: &mut Apt) {
         use ctru::gfx::{Screen, Side};
         use ctru::services::gsp::FramebufferFormat;
 
-        gfx.set_framebuffer_format(Screen::Top, FramebufferFormat::Bgr8);
-        let (fb, _, _) = gfx.get_framebuffer(Screen::Top, Side::Left);
+        self.gfx.set_framebuffer_format(Screen::Top, FramebufferFormat::Bgr8);
+        let (fb, _, _) = self.gfx.get_framebuffer(Screen::Top, Side::Left);
 
         gsp::wait_for_event(gsp::Event::VBlank0);
-        let value = v[iterate];
         for i in fb.iter_mut() {
-            *i = value;
+            *i = 127u8;
         }
-        gfx.flush_buffers();
-        gfx.swap_buffers();
-        iterate += 1usize;
-        if iterate >= v.len() { iterate = 0; }
+        self.gfx.flush_buffers();
+        self.gfx.swap_buffers();
 
-        hid::scan_input();
-        if hid::key_down(hid::PadKey::Start) {
-            return false;
+        self.hid.scan_input();
+        if self.hid.key_down(PadKey::Start) {
+            self.running = true;
         }
-        true
-    });
+    }
 
-    drop(gfx);
-    hid::exit();
-    apt::exit();
-    srv::exit();
+    fn ready_to_quit(&self) -> bool { !self.running }
+}
+
+fn main_3ds() -> () {
+    let srv = match Srv::new() {
+        Ok(s) => s,
+        _ => return
+    };
+    let mut apt = match Apt::new() {
+        Ok(a) => a,
+        _ => return
+    };
+    let hid = match Hid::new() {
+        Ok(h) => h,
+        _ => return
+    };
+    let gfx = Gfx::default();
+
+    let mut myapp = MyApplication {
+        hid: hid,
+        gfx: gfx,
+        running: true
+    };
+
+    apt.main_loop(&mut myapp);
+
+    drop(myapp);
+    drop(apt);
+    drop(srv);
 }
