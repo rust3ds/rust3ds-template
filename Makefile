@@ -53,3 +53,8 @@ sysroot/lib/rustlib/3ds.json/lib:
 sysroot/lib/rustlib/3ds.json/lib/%.rlib: sysroot/lib/rustlib/3ds.json/lib
 	@echo Building $*
 	@rustc --target 3ds.json -o sysroot/lib/rustlib/3ds.json/lib/$*.rlib --sysroot $(RUST_3DS_SYSROOT) --cfg target_os,linux $(RUST_SRC_PATH)/$*/lib.rs -Z no-landing-pads
+
+sysroot/lib/rustlib/3ds.json/lib/liblibc.rlib: 
+	@echo Building liblibc
+	@rustc --target 3ds.json -o sysroot/lib/rustlib/3ds.json/lib/liblibc.rlib --sysroot $(RUST_3DS_SYSROOT) --cfg     stdbuild --cfg target_os,linux $(RUST_SRC_PATH)/liblibc/src/lib.rs -Z no-landing-pads
+
