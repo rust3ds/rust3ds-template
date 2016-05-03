@@ -1,4 +1,3 @@
-#![feature(no_std)]
 #![feature(start)]
 #![feature(alloc)]
 #![feature(collections)]

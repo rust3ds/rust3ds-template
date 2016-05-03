@@ -11,21 +11,8 @@ You will also need to download the Rust Nightly source (making sure that the sou
 
 You will also need the following:
  * [devkitARM](http://sourceforge.net/projects/devkitpro/files/devkitARM/). A more detailed tutorial on how to set up dkA for the 3DS can be found [here](http://3dbrew.org/wiki/Setting_up_Development_Environment)
- * [my modified `cargo-build`](https://github.com/Furyhunter/cargo-build). Compile the program and put the resulting binary somewhere in your PATH so that you can freely run it from the command line.
  * `libcompiler-rt.a` for 3ds. This is already provided in the 'sysroot' folder.
  * `libcore` compiled from Rust source code you downloaded above. Instructions on how to build libcore (and other rust libraries) for the 3ds are detailed later in this readme.
-
-
-## Cargo configuration
-
-The included target file `3ds.json` handles most of the configuration settings required for Cargo to cross-compile Rust code to the 3ds. However, the Archiver for DevKitPRO has to be manually specified in Cargo's configuration settings. Otherwise the system `ar` will be used instead, and you'll get sad linker errors.
-
-The default location for Cargo's config file is in `~/.cargo/config`. Edit this file (or create it if it doesn't exist) and add the following to it:
-
-```toml
-[target.3ds]
-ar = "/path/to/arm-none-eabi-ar"
-```
 
 
 ## Environment configuration
@@ -38,10 +25,6 @@ The following environment variables need to be set:
  
 These should already be in place if you've properly installed devkitARM. If you missed that step somewhere along the line, refer again to the [3DS homebrew environment setup tutorial](http://3dbrew.org/wiki/Setting_up_Development_Environment)
  
- * `$RUST_3DS_SYSROOT` - path to sysroot such that `libcore.rlib` is located in the path `lib/rustlib/3ds.json/lib/libcore.rlib`. This is already set to the included `sysroot` folder by default in the Makefile.
-
- * `$CARGO_BUILD` - path to the `cargo-build` binary that you built earlier.
-
  * `$RUST_SRC_PATH` -- path to the `src` folder of the Rust source code you downloaded above. This is required so that you can build libcore as detailed below.
 
 
