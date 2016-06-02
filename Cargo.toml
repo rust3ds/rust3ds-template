@@ -1,13 +1,13 @@
 [package]
+description = "Nintendo 3DS project template"
 name = "rust3ds-template"
 version = "0.1.0"
-description = "Nintendo 3DS project template"
-
-[dependencies.ctru-rs]
-git = "https://github.com/Furyhunter/ctru-rs"
 
 [dependencies.alloc_system3ds]
 git = "https://github.com/Furyhunter/alloc_system3ds"
+
+[dependencies.ctru-rs]
+path = "../ctru-rs"
 
 [profile.dev]
 lto = true
