@@ -9,7 +9,6 @@ use ctru::prelude::*;
 use ctru::Gfx;
 use ctru::console::Console;
 use ctru::services::{Hid, Apt};
-use ctru::services::hid::PadKey;
 
 #[no_mangle]
 pub extern "C" fn main(_: isize, _: *const *const u8) -> isize {
@@ -20,6 +19,7 @@ pub extern "C" fn main(_: isize, _: *const *const u8) -> isize {
 fn main_3ds() -> () {
     use ctru::gfx::Screen;
     use ctru::services::gspgpu::FramebufferFormat;
+    use ctru::services::hid::PadKey;
 
     let mut apt = Apt::new();
     let mut hid = Hid::new();
@@ -30,7 +30,7 @@ fn main_3ds() -> () {
 
     let mut console = Console::default();
 
-    console.println("Hello, this is a walrus!");
+    writeln!(&mut console, "Hello, {}", "world!").unwrap();
 
     while apt.main_loop() {
         gfx.flush_buffers();
