@@ -1,16 +1,17 @@
 [package]
+description = "Nintendo 3DS project template"
 name = "rust3ds-template"
 version = "0.1.0"
-description = "Nintendo 3DS project template"
+build = "build.rs"
 
-[dependencies.ctru-rs]
-git = "https://github.com/Furyhunter/ctru-rs"
-
-[dependencies.alloc_system3ds]
-git = "https://github.com/Furyhunter/alloc_system3ds"
+[dependencies]
+ctru-rs = { git = "https://github.com/Furyhunter/ctru-rs", rev = "7337abc" } 
+alloc_system3ds = { git = "https://github.com/Furyhunter/alloc_system3ds" }
 
 [profile.dev]
 lto = true
+panic = 'abort'
 
 [profile.release]
 lto = true
+panic = 'abort'

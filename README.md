@@ -2,46 +2,41 @@
 
 A project template for Rust projects to be built on the Nintendo 3DS Homebrew Launcher.
 
+
 ## What you need
 
- * devKitARM
- * Rust nightly (1.4 as of this writing)
- * [my modified `cargo-build`](https://github.com/Furyhunter/cargo-build) -- subject to change if changes get merged.
- * `libcore` compiled from Rust sources. Instructions below on building.
- * `libcompiler-rt.a` for 3ds. Provided in sysroot folder. Use the sysroot target to build the rust dependency libraries as mentioned below, and everything should work automatically.
+First of all, you need to be running a Nightly build of Rust. This project will NOT currently compile on Stable Rust.
+
+Secondly, you need to install [Xargo](https://github.com/japaric/xargo). All you have to do is type `cargo install xargo` into your terminal and wait for it to compile.
+
+Finally, you will need to install [devkitARM](http://sourceforge.net/projects/devkitpro/files/devkitARM/). A more detailed tutorial on how to set up dkA for the 3DS can be found [here](http://3dbrew.org/wiki/Setting_up_Development_Environment)
+
 
 ## Environment configuration
-
-The file `~/.cargo/config` must be created with these contents:
-
-```toml
-[target.3ds]
-ar = "/path/to/arm-none-eabi-ar"
-```
-
-The archiver is not settable using target json, so you have to set this
-manually. Otherwise the system `ar` will be used, and you'll get sad linker
-errors.
 
 The following environment variables need to be set:
 
  * `$DEVKITPRO`
  * `$DEVKITARM`
  * `$CTRULIB`
- * `$RUST_3DS_SYSROOT` - path to sysroot such that `libcore.rlib` is located in the path `lib/rustlib/3ds.json/lib/libcore.rlib`. This is set to `sysroot` by default. **You can use the sysroot target to generate the necessary libcore locally; see below**
- * `$CARGO_BUILD` - path to `cargo-build` binary
+ 
+These should already be in place if you've properly installed devkitARM. If you missed that step somewhere along the line, refer again to the [3DS homebrew environment setup tutorial](http://3dbrew.org/wiki/Setting_up_Development_Environment)
+ 
 
-The sysroot libraries can be generated using the `sysroot` target. For that, you need to set this environment variable:
+## Building libcore (and friends) for the 3ds
 
- * `$RUST_SRC_PATH` -- path to `src` of rust checkout
-
-The following rustc libraries can be built. **Notably, libstd is not currently
-available. It requires some unwinding features that are not possible.**
+When you build your program using `xargo build` instead of `cargo build`, a custom 3DS-compatible sysroot will be compiled. While the full Rust standard libary is currently unavailable, the following crates are able to be used in your project: 
 
  * `core` -- platform-agnostic basics + prelude
  * `alloc` -- memory allocation functions
- * `libc` -- libc bindings. note: using some functions may result in undefined symbols
  * `rustc_unicode` -- unicode stuff
  * `collections` -- std collections (requires `alloc`, `rustc_unicode`)
 
-The make target `sysroot` automatically builds these. Allocators are provided by a simple implementation of `alloc_system`. This means that `Box` is available, so `collections` will work in its entirety.
+Allocators are provided by a simple implementation of `alloc_system`. This means that `Box` is available, so `collections` will work in its entirety.
+
+
+## Building your 3ds homebrew project
+
+Run `xargo build` or `xargo build --release` and a 3DS-compatible elf file will be generated. Additionally, you can simply run the `make` command and a Homebrew Launcher-compatible 3dsx file will also be created.
+
+Other useful Make commands are `make clean` to clear out old build artifacts and `make dist` to put the resulting 3ds homebrew files in an easily distributable folder.
