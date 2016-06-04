@@ -4,7 +4,6 @@
 
 #[macro_use]
 extern crate ctru;
-use ctru::prelude::*;
 
 use ctru::Gfx;
 use ctru::console::Console;
@@ -17,6 +16,7 @@ pub extern "C" fn main(_: isize, _: *const *const u8) -> isize {
 }
 
 fn main_3ds() {
+    use core::fmt::Write;
     use ctru::gfx::Screen;
     use ctru::services::gspgpu::FramebufferFormat;
     use ctru::services::hid::PadKey;

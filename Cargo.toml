@@ -4,11 +4,9 @@ name = "rust3ds-template"
 version = "0.1.0"
 build = "build.rs"
 
-[dependencies.alloc_system3ds]
-git = "https://github.com/Furyhunter/alloc_system3ds"
-
-[dependencies.ctru-rs]
-path = "../ctru-rs"
+[dependencies]
+ctru-rs = { git = "https://github.com/Furyhunter/ctru-rs", rev = "7337abc" } 
+alloc_system3ds = { git = "https://github.com/Furyhunter/alloc_system3ds" }
 
 [profile.dev]
 lto = true
