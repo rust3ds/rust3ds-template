@@ -16,7 +16,7 @@ pub extern "C" fn main(_: isize, _: *const *const u8) -> isize {
     0
 }
 
-fn main_3ds() -> () {
+fn main_3ds() {
     use ctru::gfx::Screen;
     use ctru::services::gspgpu::FramebufferFormat;
     use ctru::services::hid::PadKey;

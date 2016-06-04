@@ -29,7 +29,6 @@
     "-lsysbase",
     "-lc",
     "-lm",
-    "-lcompiler-rt",
     "-lsysbase",
     "-lgcc",
     "-lc",

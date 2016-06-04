@@ -1,0 +1,5 @@
+[build]
+target = "3ds"
+
+[target.3ds]
+linker = "arm-none-eabi-gcc"
