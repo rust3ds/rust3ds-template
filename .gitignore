@@ -8,3 +8,4 @@ dist/
 *.elf
 *.3dsx
 *.smdh
+Cargo.lock

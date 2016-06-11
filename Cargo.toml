@@ -5,11 +5,10 @@ version = "0.1.0"
 build = "build.rs"
 
 [dependencies]
-ctru-rs = { git = "https://github.com/Furyhunter/ctru-rs", rev = "7337abc" } 
+ctru-rs = { git = "https://github.com/Furyhunter/ctru-rs", rev = "c2c030f" } 
 alloc_system3ds = { git = "https://github.com/Furyhunter/alloc_system3ds" }
 
 [profile.dev]
-lto = true
 panic = 'abort'
 
 [profile.release]
