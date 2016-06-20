@@ -5,8 +5,8 @@ version = "0.1.0"
 build = "build.rs"
 
 [dependencies]
-ctru-rs = { git = "https://github.com/Furyhunter/ctru-rs", rev = "7337abc" } 
-alloc_system3ds = { git = "https://github.com/Furyhunter/alloc_system3ds" }
+ctru-rs = { git = "https://github.com/rust3ds/ctru-rs", rev = "7337abc" }
+alloc_system3ds = { git = "https://github.com/rust3ds/alloc_system3ds", rev = "da38c94" }
 
 [profile.dev]
 lto = true
