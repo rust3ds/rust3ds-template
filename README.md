@@ -1,6 +1,6 @@
 # Rust 3DS Template
 
-A project template for Rust projects to be built on the Nintendo 3DS Homebrew Launcher.
+A project template for Rust projects to be built for the Nintendo 3DS Homebrew Launcher.
 
 
 ## What you need
@@ -19,13 +19,13 @@ The following environment variables need to be set:
  * `$DEVKITPRO`
  * `$DEVKITARM`
  * `$CTRULIB`
- 
+
 These should already be in place if you've properly installed devkitARM. If you missed that step somewhere along the line, refer again to the [3DS homebrew environment setup tutorial](http://3dbrew.org/wiki/Setting_up_Development_Environment)
- 
+
 
 ## Building libcore (and friends) for the 3ds
 
-When you build your program using `xargo build` instead of `cargo build`, a custom 3DS-compatible sysroot will be compiled. While the full Rust standard libary is currently unavailable, the following crates are able to be used in your project: 
+When you build your program using `xargo build` instead of `cargo build`, a custom 3DS-compatible sysroot will be compiled. While the full Rust standard libary is currently unavailable, the following crates are able to be used in your project:
 
  * `core` -- platform-agnostic basics + prelude
  * `alloc` -- memory allocation functions
