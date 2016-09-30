@@ -10,13 +10,7 @@
   "cpu": "mpcore",
   "features": "+vfp2",
   "relocation-model": "static",
-  "linker-is-gnu": true,
-  "has-rpath": true,
-  "morestack": false,
-  "disable-redzone": true,
   "executables": true,
-  "dynamic-linking": false,
-  "no-compiler-rt": true,
   "exe-suffix": ".elf",
   "pre-link-args": [
     "-specs=3dsx.specs",
@@ -26,14 +20,11 @@
     "-mtp=soft"
   ],
   "post-link-args": [
-    "-lsysbase",
     "-lc",
     "-lm",
     "-lsysbase",
-    "-lgcc",
     "-lc",
-    "-lsysbase"
-  ],
-  "is-like-windows": false,
-  "function-sections": false
+    "-lsysbase",
+    "-lc"
+  ]
 }

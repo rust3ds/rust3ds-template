@@ -8,12 +8,7 @@ PROG_ICON := $(CTRULIB)/default_icon.png
 3DSXTOOL := $(DEVKITARM)/bin/3dsxtool
 SMDHTOOL := $(DEVKITARM)/bin/smdhtool
 
-# Optional variable
-ifeq ($(strip $(RUST_3DS_SYSROOT)),)
-	RUST_3DS_SYSROOT := sysroot
-endif
-
-.PHONY: all clean $(CRATE_NAME) dist sysroot test target/3ds/release/$(CRATE_NAME).elf
+.PHONY: all clean $(CRATE_NAME) dist test target/3ds/release/$(CRATE_NAME).elf
 
 all: $(CRATE_NAME) 
 
@@ -37,6 +32,9 @@ dist: $(CRATE_NAME)
 
 test: $(CRATE_NAME)
 	citra target/3ds/release/$(CRATE_NAME).elf
+
+send: $(CRATE_NAME)
+	3dslink target/3ds/release/$(CRATE_NAME).3dsx
 
 clean:
 	rm -rf target

@@ -1,13 +1,13 @@
 # Rust 3DS Template
 
-A project template for Rust projects to be built for the Nintendo 3DS Homebrew Launcher.
+A template for writing Nintendo 3DS homebrew in Rust with [ctru-rs](https://github.com/rust3ds/ctru-rs).
 
 
 ## What you need
 
-First of all, you need to be running a Nightly build of Rust. This project will NOT currently compile on Stable Rust.
+First of all, you need to be running a nightly build of Rust. If you don't have Rust installed or don't have a nightly compiler, check out [rustup.rs](https://rustup.rs/)
 
-Secondly, you need to install [Xargo](https://github.com/japaric/xargo). All you have to do is type `cargo install xargo` into your terminal and wait for it to compile.
+Next, you need to install [Xargo](https://github.com/japaric/xargo). All you have to do is type `cargo install xargo` in your terminal and wait for it to compile.
 
 Finally, you will need to install [devkitARM](http://sourceforge.net/projects/devkitpro/files/devkitARM/). A more detailed tutorial on how to set up dkA for the 3DS can be found [here](http://3dbrew.org/wiki/Setting_up_Development_Environment)
 
@@ -16,16 +16,16 @@ Finally, you will need to install [devkitARM](http://sourceforge.net/projects/de
 
 The following environment variables need to be set:
 
- * `$DEVKITPRO`
- * `$DEVKITARM`
- * `$CTRULIB`
+ * `$DEVKITPRO` = `/path/to/devkitPro/`
+ * `$DEVKITARM` = `$DEVKITPRO/devkitARM`
+ * `$CTRULIB` (usually is `$DEVKITPRO/libctru`)
 
 These should already be in place if you've properly installed devkitARM. If you missed that step somewhere along the line, refer again to the [3DS homebrew environment setup tutorial](http://3dbrew.org/wiki/Setting_up_Development_Environment)
 
 
-## Building libcore (and friends) for the 3ds
+## Building libcore (and friends) for the 3DS
 
-When you build your program using `xargo build` instead of `cargo build`, a custom 3DS-compatible sysroot will be compiled. While the full Rust standard libary is currently unavailable, the following crates are able to be used in your project:
+The Rust standard library is not available for 3DS homebrew, as devkitARM does not expose the full set of functions that would be required to support it. However, there are a number of freestanding crates that can be used, and that's where Xargo comes in. When you first compile your homebrew project, the following crates will be built:
 
  * `core` -- platform-agnostic basics + prelude
  * `alloc` -- memory allocation functions
@@ -34,9 +34,11 @@ When you build your program using `xargo build` instead of `cargo build`, a cust
 
 Allocators are provided by a simple implementation of `alloc_system`. This means that `Box` is available, so `collections` will work in its entirety.
 
+Additional system functionality such as screen and file IO is exposed via [ctru-rs](https://github.com/rust3ds/ctru-rs), a Rust library that wraps around [ctrulib](https://github.com/smealum/ctrulib/)
 
-## Building your 3ds homebrew project
 
-Run `xargo build` or `xargo build --release` and a 3DS-compatible elf file will be generated. Additionally, you can simply run the `make` command and a Homebrew Launcher-compatible 3dsx file will also be created.
+## Building your homebrew project
 
-Other useful Make commands are `make clean` to clear out old build artifacts and `make dist` to put the resulting 3ds homebrew files in an easily distributable folder.
+Simply run the Makefile. `make` calls Xargo, which builds a 3DS-compatible elf and converts it to the .3dsx format for use in the Homebrew Launcher.
+
+`make test` will build your project and open it in the Citra emulator if you have it installed, and `make send` will send your program to a 3DS running the Homebrew Launcher via 3dslink.
