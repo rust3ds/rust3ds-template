@@ -1,36 +1,18 @@
-#![feature(start)]
-#![no_main]
-#![no_std]
-
 #[macro_use]
 extern crate ctru;
 
 use ctru::Gfx;
 use ctru::console::Console;
-use ctru::services::{Hid, Apt};
+use ctru::services::apt::Apt;
+use ctru::services::hid::{Hid, PadKey};
 
-#[no_mangle]
-pub extern "C" fn main(_: isize, _: *const *const u8) -> isize {
-    main_3ds();
-    0
-}
-
-fn main_3ds() {
-    use core::fmt::Write;
-    use ctru::gfx::Screen;
-    use ctru::services::gspgpu::FramebufferFormat;
-    use ctru::services::hid::PadKey;
-
-    let mut apt = Apt::new();
-    let mut hid = Hid::new();
+fn main() {
+    let apt = Apt::init().unwrap();
+    let hid = Hid::init().unwrap();
     let mut gfx = Gfx::default();
+    let _console = Console::default();
 
-    gfx.set_framebuffer_format(Screen::Top, FramebufferFormat::Bgr8);
-    gfx.set_framebuffer_format(Screen::Bottom, FramebufferFormat::Bgr8);
-
-    let mut console = Console::default();
-
-    writeln!(&mut console, "Hello, {}", "world!").unwrap();
+    println!("Hello, world!");
 
     while apt.main_loop() {
         gfx.flush_buffers();
