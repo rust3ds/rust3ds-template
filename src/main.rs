@@ -1,4 +1,3 @@
-#[macro_use]
 extern crate ctru;
 
 use ctru::Gfx;
@@ -13,6 +12,8 @@ fn main() {
     let _console = Console::default();
 
     println!("Hello, world!");
+
+    println!("\x1b[28;15HPress Start to exit");
 
     while apt.main_loop() {
         gfx.flush_buffers();
