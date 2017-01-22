@@ -23,8 +23,8 @@ The required version of devkitARM is r46. The required version of ctrulib is 1.2
 
 devkitARM requires two environment variables to be set:
 
-`$DEVKITPRO = /path/to/devkitPro/` (usually `/opt/devkitPro/`)
-`$DEVKITARM = $DEVKITPRO/devkitARM`
+* $DEVKITPRO = /path/to/devkitPro/ (usually `/opt/devkitPro/`)
+* $DEVKITARM = $DEVKITPRO/devkitARM`
 
 If you encounter the following error:
 
