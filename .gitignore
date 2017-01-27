@@ -2,7 +2,6 @@ target/
 dist/
 
 *.rlib
-*.lock
 
 *.o
 *.ll
