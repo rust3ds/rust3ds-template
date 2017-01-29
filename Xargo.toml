@@ -1,12 +1,12 @@
 [dependencies.collections]
 
 [dependencies.ctr-libc]
-git = "https://github.com/fenrirwolf/ctru-rs"
-branch = "std" 
+git = "https://github.com/rust3ds/ctru-rs"
+rev = "20a7da8"
 default-features = false
 stage = 1
 
 [dependencies.std]
-git = "https://github.com/fenrirwolf/ctru-rs"
-branch = "std"
+git = "https://github.com/rust3ds/ctru-rs"
+rev = "20a7da8"
 stage = 2
