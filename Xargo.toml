@@ -1,0 +1,12 @@
+[dependencies.collections]
+
+[dependencies.ctr-libc]
+git = "https://github.com/fenrirwolf/ctru-rs"
+branch = "std" 
+default-features = false
+stage = 1
+
+[dependencies.std]
+git = "https://github.com/fenrirwolf/ctru-rs"
+branch = "std"
+stage = 2

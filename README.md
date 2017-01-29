@@ -1,42 +1,41 @@
 # Rust 3DS Template
 
-A project template for Rust projects to be built for the Nintendo 3DS Homebrew Launcher.
+An example project demonstrating how to compile and run Rust programs on the Nintendo 3DS using [ctru-rs](https://github.com/rust3ds/ctru-rs).
+
+## Requirements
+
+A nightly version of Rust is required to use this project. If you don't have Rust installed or don't have a nightly compiler, check out [rustup.rs](https://rustup.rs).
+
+Next, you will need [Xargo](https://github.com/japaric/xargo) to facilitate cross-compilation to the 3DS. It is easily installable via Cargo: `$ cargo install xargo`
+
+Finally, you will need the most recent version of [devkitARM](http://sourceforge.net/projects/devkitpro/files/devkitARM/). A detailed tutorial on how to set up devkitARM can be found on the [3dbrew wiki](http://3dbrew.org/wiki/Setting_up_Development_Environment).
 
 
-## What you need
+## Useage
 
-First of all, you need to be running a Nightly build of Rust. This project will NOT currently compile on Stable Rust.
+Use the included `Makefile` to build your program. Under the hood, `make` calls `xargo` to create a custom sysroot containing cross-compiled versions of the Rust core libraries, as well as a limited version of the Rust standard library. `xargo` caches the sysroot after it has been built for the first time. 
 
-Secondly, you need to install [Xargo](https://github.com/japaric/xargo). All you have to do is type `cargo install xargo` into your terminal and wait for it to compile.
+Once the sysroot is in place, a Homebrew Launcher-compatible `3dsx` version of your program will be generated.
 
-Finally, you will need to install [devkitARM](http://sourceforge.net/projects/devkitpro/files/devkitARM/). A more detailed tutorial on how to set up dkA for the 3DS can be found [here](http://3dbrew.org/wiki/Setting_up_Development_Environment)
+## Troubleshooting
 
+The required version of devkitARM is r46. The required version of ctrulib is 1.2.
 
-## Environment configuration
+devkitARM requires two environment variables to be set:
 
-The following environment variables need to be set:
+* $DEVKITPRO = /path/to/devkitPro/ (usually `/opt/devkitPro/`)
+* $DEVKITARM = $DEVKITPRO/devkitARM`
 
- * `$DEVKITPRO`
- * `$DEVKITARM`
- * `$CTRULIB`
+If you encounter the following error:
 
-These should already be in place if you've properly installed devkitARM. If you missed that step somewhere along the line, refer again to the [3DS homebrew environment setup tutorial](http://3dbrew.org/wiki/Setting_up_Development_Environment)
+```
+process didn't exit successfully: `/tmp/xargo.dBBjgk2BZXsS/target/release/build/compiler_builtins-68d510bc1c7df42e/build-script-build` (exit code: 1)
+--- stdout
+cargo:rerun-if-changed=build.rs
 
+--- stderr
+error: Error loading target specification: Could not find specification for target "3ds"
+help: If using a custom target, set the RUST_TARGET_PATH env var to the directory where its .json file is stored.
+```
 
-## Building libcore (and friends) for the 3ds
-
-When you build your program using `xargo build` instead of `cargo build`, a custom 3DS-compatible sysroot will be compiled. While the full Rust standard libary is currently unavailable, the following crates are able to be used in your project:
-
- * `core` -- platform-agnostic basics + prelude
- * `alloc` -- memory allocation functions
- * `rustc_unicode` -- unicode stuff
- * `collections` -- std collections (requires `alloc`, `rustc_unicode`)
-
-Allocators are provided by a simple implementation of `alloc_system`. This means that `Box` is available, so `collections` will work in its entirety.
-
-
-## Building your 3ds homebrew project
-
-Run `xargo build` or `xargo build --release` and a 3DS-compatible elf file will be generated. Additionally, you can simply run the `make` command and a Homebrew Launcher-compatible 3dsx file will also be created.
-
-Other useful Make commands are `make clean` to clear out old build artifacts and `make dist` to put the resulting 3ds homebrew files in an easily distributable folder.
+set `$RUST_TARGET_PATH` to the directory where you placed this template project. The `Makefile` passes this argument when invoked, but you will need to manually set the variable if you run `xargo build` by itself.

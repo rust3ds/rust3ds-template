@@ -5,19 +5,16 @@
   "ar": "arm-none-eabi-ar",
   "target-endian": "little",
   "target-pointer-width": "32",
+  "target-family": "unix",
   "arch": "arm",
   "os": "linux",
+  "env": "newlib",
   "cpu": "mpcore",
   "features": "+vfp2",
   "relocation-model": "static",
-  "linker-is-gnu": true,
-  "has-rpath": true,
-  "morestack": false,
-  "disable-redzone": true,
   "executables": true,
-  "dynamic-linking": false,
-  "no-compiler-rt": true,
   "exe-suffix": ".elf",
+  "panic-strategy": "abort",
   "pre-link-args": [
     "-specs=3dsx.specs",
     "-march=armv6k",
@@ -25,15 +22,11 @@
     "-mfloat-abi=hard",
     "-mtp=soft"
   ],
-  "post-link-args": [
-    "-lsysbase",
+  "late-link-args": [
     "-lc",
     "-lm",
-    "-lsysbase",
-    "-lgcc",
     "-lc",
-    "-lsysbase"
-  ],
-  "is-like-windows": false,
-  "function-sections": false
+    "-lsysbase",
+    "-lc"
+  ]
 }
