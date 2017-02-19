@@ -11,7 +11,7 @@ Next, you will need [Xargo](https://github.com/japaric/xargo) to facilitate cros
 Finally, you will need the most recent version of [devkitARM](http://sourceforge.net/projects/devkitpro/files/devkitARM/). A detailed tutorial on how to set up devkitARM can be found on the [3dbrew wiki](http://3dbrew.org/wiki/Setting_up_Development_Environment).
 
 
-## Useage
+## Usage
 
 Use the included `Makefile` to build your program. Under the hood, `make` calls `xargo` to create a custom sysroot containing cross-compiled versions of the Rust core libraries, as well as a limited version of the Rust standard library. `xargo` caches the sysroot after it has been built for the first time. 
 
