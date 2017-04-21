@@ -6,10 +6,37 @@ An example project demonstrating how to compile and run Rust programs on the Nin
 
 A nightly version of Rust is required to use this project. If you don't have Rust installed or don't have a nightly compiler, check out [rustup.rs](https://rustup.rs).
 
-Next, you will need [Xargo](https://github.com/japaric/xargo) to facilitate cross-compilation to the 3DS. It is easily installable via Cargo: `$ cargo install xargo`
+Next, you will need [Xargo](https://github.com/japaric/xargo) to facilitate cross-compilation to the 3DS.
 
-Finally, you will need the most recent version of [devkitARM](http://sourceforge.net/projects/devkitpro/files/devkitARM/). A detailed tutorial on how to set up devkitARM can be found on the [3dbrew wiki](http://3dbrew.org/wiki/Setting_up_Development_Environment).
+Finally, you will need the most recent version of [devkitARM](http://sourceforge.net/projects/devkitpro/files/devkitARM/).
 
+### Preparation of the requirements
+
+#### Installing Rust
+
+If you don't have Rust installed (macOS & Linux): 
+
+    $ curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly
+
+If you have already installed rustup: 
+
+    $ rustup default nightly
+
+#### Installing Xargo
+
+    $ cargo install xargo
+    $ rustup component add rust-src
+
+#### Installing devkitARM
+
+The required version of devkitARM is r46. The required version of ctrulib is 1.2.
+
+A detailed tutorial on how to set up devkitARM can be found on the [3dbrew wiki](http://3dbrew.org/wiki/Setting_up_Development_Environment).
+
+On macOS & Linux, devkitARM requires two environment variables to be set:
+
+* $DEVKITPRO = /path/to/devkitPro/ (usually `/opt/devkitPro/`)
+* $DEVKITARM = $DEVKITPRO/devkitARM
 
 ## Usage
 
@@ -18,13 +45,6 @@ Use the included `Makefile` to build your program. Under the hood, `make` calls 
 Once the sysroot is in place, a Homebrew Launcher-compatible `3dsx` version of your program will be generated.
 
 ## Troubleshooting
-
-The required version of devkitARM is r46. The required version of ctrulib is 1.2.
-
-devkitARM requires two environment variables to be set:
-
-* $DEVKITPRO = /path/to/devkitPro/ (usually `/opt/devkitPro/`)
-* $DEVKITARM = $DEVKITPRO/devkitARM`
 
 If you encounter the following error:
 
