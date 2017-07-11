@@ -4,12 +4,6 @@
 
 [dependencies.alloc_system]
 
-[dependencies.ctr-libc]
-git = "https://github.com/rust3ds/ctru-rs"
-rev = "2538d23"
-default-features = false
-stage = 1
-
 [dependencies.std]
 git = "https://github.com/rust3ds/ctru-rs"
 rev = "2538d23"
