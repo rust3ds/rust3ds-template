@@ -4,5 +4,4 @@
 
 [dependencies.std]
 git = "https://github.com/rust3ds/ctru-rs"
-rev = "123d53f"
 stage = 2
