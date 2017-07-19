@@ -2,7 +2,6 @@
 description = "Nintendo 3DS project template"
 name = "rust3ds-template"
 version = "0.1.0"
-build = "build.rs"
 
 [dependencies]
 ctru-rs = { git = "https://github.com/rust3ds/ctru-rs" }
