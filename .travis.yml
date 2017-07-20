@@ -1,0 +1,31 @@
+language: rust
+
+rust:
+   - nightly-2017-07-18
+   - nightly
+
+matrix:
+   allow_failures:
+      - rust: nightly
+
+install:
+   - pushd /tmp
+
+   # Install DevkitARM
+   - export DEVKITPRO="$HOME/dkp"
+   - export DEVKITARM="$DEVKITPRO/devkitARM"
+   - export PATH="$PATH:$DEVKITARM/bin"
+   - wget https://raw.githubusercontent.com/devkitPro/installer/master/perl/devkitARMupdate.pl
+   - chmod +x devkitARMupdate.pl
+   - ./devkitARMupdate.pl "$DEVKITPRO"
+
+   # Install Xargo
+   - cargo install xargo --git https://github.com/FenrirWolf/xargo --rev metadata
+
+   # Install Rust source
+   - rustup component add rust-src
+
+   - popd
+
+script:
+   - make
