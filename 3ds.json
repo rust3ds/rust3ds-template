@@ -2,6 +2,7 @@
   "data-layout": "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64", 
   "llvm-target": "arm-none-eabihf",
   "linker": "arm-none-eabi-gcc",
+  "linker-flavor": "ld",
   "ar": "arm-none-eabi-ar",
   "target-endian": "little",
   "target-pointer-width": "32",
