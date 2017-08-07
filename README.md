@@ -38,8 +38,8 @@ A detailed tutorial on how to set up devkitARM can be found on the [3dbrew wiki]
 
 On macOS & Linux, devkitARM requires two environment variables to be set:
 
-* $DEVKITPRO = /path/to/devkitPro/ (usually `/opt/devkitPro/`)
-* $DEVKITARM = $DEVKITPRO/devkitARM
+* `$DEVKITPRO` = `/path/to/devkitPro/` (usually `/opt/devkitpro/`)
+* `$DEVKITARM` = `$DEVKITPRO/devkitARM`
 
 ## Usage
 
@@ -50,4 +50,5 @@ Once the sysroot is in place, a Homebrew Launcher-compatible `3dsx` version of y
 ## Troubleshooting
 
 Q: I'm getting a bunch of errors about `#![feature(rustc_private)]` not being enabled for `ctru-rs
+
 A: As a workaround, install the edited version of `Xargo` that is now linked in the instructions above.
