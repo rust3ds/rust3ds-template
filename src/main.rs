@@ -1,9 +1,9 @@
 extern crate ctru;
 
-use ctru::Gfx;
+use ctru::gfx::Gfx;
 use ctru::console::Console;
 use ctru::services::apt::Apt;
-use ctru::services::hid::{Hid, PadKey};
+use ctru::services::hid::{self, Hid};
 
 fn main() {
     let apt = Apt::init().unwrap();
@@ -13,14 +13,14 @@ fn main() {
 
     println!("Hello, world!");
 
-    println!("\x1b[28;15HPress Start to exit");
+    println!("\x1b[29;16HPress Start to exit");
 
     while apt.main_loop() {
         gfx.flush_buffers();
         gfx.swap_buffers();
 
         hid.scan_input();
-        if hid.key_down(PadKey::Start) {
+        if hid.keys_down().contains(hid::KEY_START) {
             break;
         }
     }

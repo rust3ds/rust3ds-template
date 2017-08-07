@@ -1,6 +1,7 @@
 [dependencies.collections]
-
 [dependencies.rand]
+[dependencies.panic_abort]
+[dependencies.panic_unwind]
 
 [dependencies.std]
 git = "https://github.com/rust3ds/ctru-rs"

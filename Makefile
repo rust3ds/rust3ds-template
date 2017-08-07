@@ -13,7 +13,7 @@ SMDHTOOL := $(DEVKITARM)/bin/smdhtool
 all: $(CRATE_NAME) 
 
 target/3ds/release/$(CRATE_NAME).elf:
-	RUST_TARGET_PATH=$(PWD) xargo build --release
+	xargo build --release
 
 target/3ds/release/$(CRATE_NAME).smdh:
 	$(SMDHTOOL) --create "${PROG_NAME}" "${PROG_DESC}" "${PROG_AUTHOR}" "${PROG_ICON}" target/3ds/release/$(CRATE_NAME).smdh
@@ -27,7 +27,6 @@ dist: $(CRATE_NAME)
 	mkdir -p dist/$(CRATE_NAME)
 	cp target/3ds/release/$(CRATE_NAME).elf dist/$(CRATE_NAME)
 	cp target/3ds/release/$(CRATE_NAME).3dsx dist/$(CRATE_NAME)
-	cp target/3ds/release/$(CRATE_NAME).smdh dist/$(CRATE_NAME)
 	cp $(PROG_ICON) dist/$(CRATE_NAME)/$(CRATE_NAME).png
 
 test: $(CRATE_NAME)
