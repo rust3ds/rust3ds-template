@@ -7,8 +7,7 @@ version = "0.1.0"
 ctru-rs = { git = "https://github.com/rust3ds/ctru-rs" }
 
 [profile.dev]
-panic = 'abort'
+lto = true
 
 [profile.release]
 lto = true
-panic = 'abort'
