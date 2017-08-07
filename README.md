@@ -16,20 +16,23 @@ Finally, you will need the most recent version of [devkitARM](http://sourceforge
 
 If you don't have Rust installed (macOS & Linux): 
 
-    $ curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly
+    `$ curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly`
 
 If you have already installed rustup: 
 
-    $ rustup default nightly
+    `$ rustup default nightly`
 
 #### Installing Xargo
 
-    $ cargo install xargo
-    $ rustup component add rust-src
+    `$ rustup component add rust-src`
+    `$ cargo install --git https://github.com/FenrirWolf/xargo.git --branch metadata`
+    
+    Note: The above fork of Xargo is used as a temporary workaround for an issue when compiling and
+    using the generated sysroot.
 
 #### Installing devkitARM
 
-The required version of devkitARM is r46. The required version of ctrulib is 1.2.
+As of this writing, the current version of devkitARM is r47 and the current version of libctru is 1.3.0.
 
 A detailed tutorial on how to set up devkitARM can be found on the [3dbrew wiki](http://3dbrew.org/wiki/Setting_up_Development_Environment).
 
@@ -46,16 +49,5 @@ Once the sysroot is in place, a Homebrew Launcher-compatible `3dsx` version of y
 
 ## Troubleshooting
 
-If you encounter the following error:
-
-```
-process didn't exit successfully: `/tmp/xargo.dBBjgk2BZXsS/target/release/build/compiler_builtins-68d510bc1c7df42e/build-script-build` (exit code: 1)
---- stdout
-cargo:rerun-if-changed=build.rs
-
---- stderr
-error: Error loading target specification: Could not find specification for target "3ds"
-help: If using a custom target, set the RUST_TARGET_PATH env var to the directory where its .json file is stored.
-```
-
-set `$RUST_TARGET_PATH` to the directory where you placed this template project. The `Makefile` passes this argument when invoked, but you will need to manually set the variable if you run `xargo build` by itself.
+Q: I'm getting a bunch of errors about `#![feature(rustc_private)]` not being enabled for `ctru-rs
+A: As a workaround, install the edited version of `Xargo` that is now linked in the instructions above.
