@@ -25,10 +25,9 @@ If you have already installed rustup:
 #### Installing Xargo
 
     `$ rustup component add rust-src`
-    `$ cargo install --git https://github.com/FenrirWolf/xargo.git --branch metadata`
-    
-    Note: The above fork of Xargo is used as a temporary workaround for an issue when compiling and
-    using the generated sysroot.
+    `$ cargo install xargo --vers 0.3.8`
+
+    NOTE: Xargo 0.3.8 is currently required because 0.3.9 fails to build the `compiler_builtins` crate
 
 #### Installing devkitARM
 
@@ -46,9 +45,3 @@ On macOS & Linux, devkitARM requires two environment variables to be set:
 Use the included `Makefile` to build your program. Under the hood, `make` calls `xargo` to create a custom sysroot containing cross-compiled versions of the Rust core libraries, as well as a limited version of the Rust standard library. `xargo` caches the sysroot after it has been built for the first time. 
 
 Once the sysroot is in place, a Homebrew Launcher-compatible `3dsx` version of your program will be generated.
-
-## Troubleshooting
-
-Q: I'm getting a bunch of errors about `#![feature(rustc_private)]` not being enabled for `ctru-rs
-
-A: As a workaround, install the edited version of `Xargo` that is now linked in the instructions above.
