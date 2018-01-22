@@ -25,9 +25,7 @@ If you have already installed rustup:
 #### Installing Xargo
 
     `$ rustup component add rust-src`
-    `$ cargo install xargo --vers 0.3.8`
-
-    NOTE: Xargo 0.3.8 is currently required because 0.3.9 fails to build the `compiler_builtins` crate
+    `$ cargo install xargo`
 
 #### Installing devkitARM
 
@@ -45,3 +43,9 @@ On macOS & Linux, devkitARM requires two environment variables to be set:
 Use the included `Makefile` to build your program. Under the hood, `make` calls `xargo` to create a custom sysroot containing cross-compiled versions of the Rust core libraries, as well as a limited version of the Rust standard library. `xargo` caches the sysroot after it has been built for the first time. 
 
 Once the sysroot is in place, a Homebrew Launcher-compatible `3dsx` version of your program will be generated.
+
+## Troubleshooting
+
+-Q: I get an error saying that the `3ds` target can't be found when I run `xargo build`
+
+-A: Recent versions of Rust require you to set the `$RUST_TARGET_PATH` env variable to the directory where your target spec is located. The Makefile does this automatically when you invoke it, or you can manually set the variable yourself.

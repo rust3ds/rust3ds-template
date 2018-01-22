@@ -13,7 +13,7 @@ SMDHTOOL := $(DEVKITARM)/bin/smdhtool
 all: $(CRATE_NAME) 
 
 target/3ds/release/$(CRATE_NAME).elf:
-	xargo build --release
+	RUST_TARGET_PATH=$(shell pwd) xargo build --release
 
 target/3ds/release/$(CRATE_NAME).smdh:
 	$(SMDHTOOL) --create "${PROG_NAME}" "${PROG_DESC}" "${PROG_AUTHOR}" "${PROG_ICON}" target/3ds/release/$(CRATE_NAME).smdh
