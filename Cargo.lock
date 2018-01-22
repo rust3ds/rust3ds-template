@@ -6,7 +6,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 [[package]]
 name = "ctru-rs"
 version = "0.6.0"
-source = "git+https://github.com/rust3ds/ctru-rs#681dfb425e3b2bb26224047aaacf6356d31fe6c4"
+source = "git+https://github.com/rust3ds/ctru-rs#d1475d0d2c2abadee8348cab67a9b6a8fd0a909a"
 dependencies = [
  "bitflags 0.9.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "ctru-sys 0.4.0 (git+https://github.com/rust3ds/ctru-rs)",
@@ -16,14 +16,14 @@ dependencies = [
 [[package]]
 name = "ctru-sys"
 version = "0.4.0"
-source = "git+https://github.com/rust3ds/ctru-rs#681dfb425e3b2bb26224047aaacf6356d31fe6c4"
+source = "git+https://github.com/rust3ds/ctru-rs#d1475d0d2c2abadee8348cab67a9b6a8fd0a909a"
 dependencies = [
- "libc 0.2.34 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.36 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "libc"
-version = "0.2.34"
+version = "0.2.36"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -42,5 +42,5 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum bitflags 0.9.1 (registry+https://github.com/rust-lang/crates.io-index)" = "4efd02e230a02e18f92fc2735f44597385ed02ad8f831e7c1c1156ee5e1ab3a5"
 "checksum ctru-rs 0.6.0 (git+https://github.com/rust3ds/ctru-rs)" = "<none>"
 "checksum ctru-sys 0.4.0 (git+https://github.com/rust3ds/ctru-rs)" = "<none>"
-"checksum libc 0.2.34 (registry+https://github.com/rust-lang/crates.io-index)" = "36fbc8a8929c632868295d0178dd8f63fc423fd7537ad0738372bd010b3ac9b0"
+"checksum libc 0.2.36 (registry+https://github.com/rust-lang/crates.io-index)" = "1e5d97d6708edaa407429faa671b942dc0f2727222fb6b6539bf1db936e4b121"
 "checksum widestring 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)" = "7157704c2e12e3d2189c507b7482c52820a16dfa4465ba91add92f266667cadb"
