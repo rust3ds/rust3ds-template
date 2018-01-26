@@ -40,12 +40,26 @@ On macOS & Linux, devkitARM requires two environment variables to be set:
 
 ## Usage
 
-Use the included `Makefile` to build your program. Under the hood, `make` calls `xargo` to create a custom sysroot containing cross-compiled versions of the Rust core libraries, as well as a limited version of the Rust standard library. `xargo` caches the sysroot after it has been built for the first time. 
+Use the included `Makefile` to build your program. Under the hood, `make` calls `xargo` to create a custom sysroot containing cross-compiled versions of the Rust core libraries, as well as a limited version of the Rust standard library. `xargo` caches the sysroot after it has been built for the first time. Once the sysroot is in place, a Homebrew Launcher-compatible `3dsx` version of your program will be generated.
 
-Once the sysroot is in place, a Homebrew Launcher-compatible `3dsx` version of your program will be generated.
+Running `make` will build your program in release mode. Running `make test` will open your program in the `Citra` emulator if you have it installed. Running `make send` will send your program to your 3DS via `3dslink` (press Y in the Homebrew Launcher to receive the program).
 
 ## Troubleshooting
 
 -Q: I get an error saying that the `3ds` target can't be found when I run `xargo build`
 
 -A: Recent versions of Rust require you to set the `$RUST_TARGET_PATH` env variable to the directory where your target spec is located. The Makefile does this automatically when you invoke it, or you can manually set the variable yourself.
+
+-Q: `std` or `<some other crate>` is failing to build
+
+-A: Nightly Rust moves fast and things tend to break a lot. If you want to use a known-working nightly, try the one listed in the [travis config file](https://github.com/rust3ds/ctru-rs/blob/master/.travis.yml#L3-L4) for `ctru-rs`. And feel free to file an issue detailing the error at the repo too!
+
+-Q: I'm running my homebrew in Citra and I don't see any error message if my program panics
+
+-A: You need to enable Debug SVC output in Citra's logger. There are two configuration files in `~/.config/citra-emu`: `sdl2-config.ini` and `qt-config.ini`. The first is for the normal `citra` executable and the second for `citra-qt`. Add `Debug.Emulated:Debug` to the `log_filter` variable for whichever version you intend to use. The Makefile calls the sdl2 version by default when running `make test`.
+
+-Q: I got `hello world` working, but now what? Is there documentation for how to do anything else?
+
+-A: Not quite yet, but we're working on that. Feel free to browse the list of [example programs](https://github.com/rust3ds/ctru-rs/tree/master/examples/src/bin) in the meantime.
+
+You should also become familiar with [libctru's documentation](http://smealum.github.io/ctrulib/) if you aren't already. It will help you understand what the current `ctru-rs` APIs are doing, plus you can use raw `libctru` functions directly via the `ctru-sys` crate if you want access to anything not yet exposed in `ctru-rs`.
