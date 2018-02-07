@@ -6,7 +6,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 [[package]]
 name = "ctru-rs"
 version = "0.7.0"
-source = "git+https://github.com/rust3ds/ctru-rs#fc0e124f4390deba03193d277dd4fe93ae5443a3"
+source = "git+https://github.com/rust3ds/ctru-rs#d46f9f45657dee9dc0277e5470fcf7e8bb3eb3e7"
 dependencies = [
  "bitflags 1.0.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "ctru-sys 0.4.0 (git+https://github.com/rust3ds/ctru-rs)",
@@ -16,7 +16,7 @@ dependencies = [
 [[package]]
 name = "ctru-sys"
 version = "0.4.0"
-source = "git+https://github.com/rust3ds/ctru-rs#fc0e124f4390deba03193d277dd4fe93ae5443a3"
+source = "git+https://github.com/rust3ds/ctru-rs#d46f9f45657dee9dc0277e5470fcf7e8bb3eb3e7"
 dependencies = [
  "libc 0.2.36 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
