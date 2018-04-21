@@ -8,6 +8,10 @@ PROG_ICON := $(DEVKITPRO)/libctru/default_icon.png
 3DSXTOOL := $(DEVKITARM)/bin/3dsxtool
 SMDHTOOL := $(DEVKITARM)/bin/smdhtool
 
+export CC_3ds := $(DEVKITARM)/bin/arm-none-eabi-gcc
+export TARGET_CFLAGS := -specs=3dsx.specs -mfloat-abi=hard -march=armv6k -mtune=mpcore \
+						-mfpu=vfp -mtp=soft
+
 .PHONY: all clean $(CRATE_NAME) dist test send target/3ds/release/$(CRATE_NAME).elf
 
 all: $(CRATE_NAME) 
@@ -38,3 +42,6 @@ send: $(CRATE_NAME)
 clean:
 	rm -rf target
 	rm -rf dist
+
+nuke: clean
+	rm -rf ~/.xargo
