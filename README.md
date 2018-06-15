@@ -29,7 +29,7 @@ If you have already installed rustup:
 
 #### Installing devkitARM
 
-As of this writing, the current version of devkitARM is r47 and the current version of libctru is 1.4.0.
+As of this writing, the current version of devkitARM is r48 and the current version of libctru is 1.5.0.
 
 A detailed tutorial on how to set up devkitARM can be found on the [3dbrew wiki](http://3dbrew.org/wiki/Setting_up_Development_Environment).
 
