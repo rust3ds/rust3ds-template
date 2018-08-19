@@ -5,8 +5,8 @@ PROG_DESC := Rust, a modern, safe systems language.
 PROG_AUTHOR := You
 PROG_ICON := $(DEVKITPRO)/libctru/default_icon.png
 
-3DSXTOOL := $(DEVKITARM)/bin/3dsxtool
-SMDHTOOL := $(DEVKITARM)/bin/smdhtool
+3DSXTOOL := $(DEVKITPRO)/tools/bin/3dsxtool
+SMDHTOOL := $(DEVKITPRO)/tools/bin/smdhtool
 
 export CC_3ds := $(DEVKITARM)/bin/arm-none-eabi-gcc
 export TARGET_CFLAGS := -specs=3dsx.specs -mfloat-abi=hard -march=armv6k -mtune=mpcore \
