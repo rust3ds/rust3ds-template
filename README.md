@@ -1,3 +1,6 @@
+# Deprecated
+This repository has been deprecated in favour of the new example projects present within the new ctru-rs version of the Rust3DS toolchain. Also, the build instructions here documented aren't valid for our new projects. For more information about the new tools and libraries, check [ctru-rs](https://github.com/rust3ds/ctru-rs).
+
 # Rust 3DS Template
 
 An example project demonstrating how to compile and run Rust programs on the Nintendo 3DS using [ctru-rs](https://github.com/rust3ds/ctru-rs).
